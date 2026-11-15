@@ -1,6 +1,6 @@
-#include "diesel_vision_frontend/armor_pipeline.hpp"
-#include "diesel_vision_frontend/dual_detector.hpp"
-#include "diesel_vision_frontend/pnp_solver.hpp"
+#include "diesel_vision_frontend/armor/armor_pipeline.hpp"
+#include "diesel_vision_frontend/armor/dual_detector.hpp"
+#include "diesel_vision_frontend/armor/pnp_solver.hpp"
 // 调用层 调用 detect 和 pnp
 
 namespace diesel_vision_frontend {

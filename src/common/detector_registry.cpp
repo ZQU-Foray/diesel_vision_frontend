@@ -1,4 +1,4 @@
-#include "diesel_vision_frontend/detector_registry.hpp"
+#include "diesel_vision_frontend/common/detector_registry.hpp"
 
 #include <algorithm>
 #include <cctype>

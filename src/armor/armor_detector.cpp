@@ -1,4 +1,4 @@
-#include "diesel_vision_frontend/armor_detector.hpp"
+#include "diesel_vision_frontend/armor/armor_detector.hpp"
 
 #include <array>
 #include <cmath>

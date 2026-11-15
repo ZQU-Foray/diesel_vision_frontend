@@ -5,8 +5,8 @@
 #include <cstdlib>
 #include <iostream>
 
-#include "diesel_vision_frontend/armor_pipeline.hpp"
-#include "diesel_vision_frontend/dual_detector.hpp"
+#include "diesel_vision_frontend/armor/armor_pipeline.hpp"
+#include "diesel_vision_frontend/armor/dual_detector.hpp"
 
 namespace diesel_vision_frontend {
 TEST(DualDetectorTest, PoseColorClassesFollowOriginalLabels) {

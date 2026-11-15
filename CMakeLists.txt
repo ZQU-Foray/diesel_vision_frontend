@@ -25,13 +25,14 @@ if(NOT ONNXRUNTIME_INCLUDE_DIR OR NOT ONNXRUNTIME_LIB)
 endif()
 
 add_library(${PROJECT_NAME} SHARED
-    src/pnp_solver.cpp
-    src/armor_pipeline.cpp
-    src/pattern_match.cpp
-    src/dual_detector.cpp
-    src/sp_lightbar_geometry.cpp
-    src/detector_registry.cpp
-    src/armor_detector.cpp
+    src/arm/observation.cpp
+    src/armor/pnp_solver.cpp
+    src/armor/armor_pipeline.cpp
+    src/armor/pattern_match.cpp
+    src/armor/dual_detector.cpp
+    src/armor/sp_lightbar_geometry.cpp
+    src/common/detector_registry.cpp
+    src/armor/armor_detector.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC Eigen3::Eigen ${OpenCV_LIBS} ${ONNXRUNTIME_LIB} Threads::Threads)
@@ -74,6 +75,8 @@ endif()
 
 if(BUILD_TESTING)
     find_package(ament_cmake_gtest REQUIRED)
+    ament_add_gtest(test_arm_observation test/test_arm_observation.cpp)
+    target_link_libraries(test_arm_observation ${PROJECT_NAME})
     ament_add_gtest(test_pnp test/test_pnp.cpp)
     target_link_libraries(test_pnp ${PROJECT_NAME})
 

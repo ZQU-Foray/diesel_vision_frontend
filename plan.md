@@ -1,5 +1,26 @@
 # 开发计划
 
+## 2026-11-14 include业务分区（覆盖旧路径）
+
+验证：加载ROS Humble环境后重新构建，CTest 8/8 测试程序通过；仓内旧根路径include扫描为0，git diff --check通过。未运行真实硬件，外部历史调用方尚未迁移。
+
+头文件与src同步按业务分区；装甲板armor/、机械臂arm/，前端检测抽象放common/。所有仓内源码、工具与测试include同步更新。库目标、命名空间和算法不变；这是公共包含路径破坏性变更，不保留旧路径转发头，外部调用方须同步改include。未改其他工作区或历史模拟器源码，未commit/push。
+
+
+## 2026-11-14 源码业务分区
+
+验证：迁移后重新配置/构建前端，CTest 8/8测试程序通过；git diff --check通过。测试夹具未提供的模型用例按原逻辑跳过，不代表实机验收。
+
+按本人要求，将装甲板实现迁入src/armor，机械臂实现归src/arm，跨业务注册表归src/common。CMake同步源文件路径，公共头文件/命名空间/算法不变。前端观测校验由inline移为src/arm/observation.cpp，测试语义不变。未commit/push，PR仍到dev。
+
+## 2026-11-14 机械臂分支
+
+验证：完整CMake构建通过，CTest 8/8测试程序通过（模型夹具缺失的用例可能按原测试逻辑跳过，不代表真实模型/相机验收）。
+- 从 origin/dev ac11181 建立 feat/arm-frontend，PR目标dev；未commit/push。
+- 新增ArmObservation完整相机系旋转/平移契约和数值检查，namespace diesel_vision_frontend。
+- 无相机/数据集，不实现假识别器；未改变既有Detector/Observation契约。
+- interfaces正式消息与前后端装配适配待评审。
+
 ## 任务列表
 
 - [ ] 接装甲板检测/跟踪，产出带置信度的目标

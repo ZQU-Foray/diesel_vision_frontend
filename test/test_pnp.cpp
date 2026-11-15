@@ -7,7 +7,7 @@
 #include <limits>
 #include <opencv2/calib3d.hpp>
 
-#include "diesel_vision_frontend/pnp_solver.hpp"
+#include "diesel_vision_frontend/armor/pnp_solver.hpp"
 
 using namespace diesel_vision_frontend;
 

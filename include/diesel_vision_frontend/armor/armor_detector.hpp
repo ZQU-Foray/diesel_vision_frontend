@@ -6,10 +6,10 @@
 #include <string>
 #include <vector>
 
-#include "diesel_vision_frontend/detector.hpp"
-#include "diesel_vision_frontend/detector_registry.hpp"
-#include "diesel_vision_frontend/dual_detector.hpp"
-#include "diesel_vision_frontend/pnp_solver.hpp"
+#include "diesel_vision_frontend/common/detector.hpp"
+#include "diesel_vision_frontend/common/detector_registry.hpp"
+#include "diesel_vision_frontend/armor/dual_detector.hpp"
+#include "diesel_vision_frontend/armor/pnp_solver.hpp"
 
 namespace diesel_vision_frontend {
 

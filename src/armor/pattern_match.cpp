@@ -1,4 +1,4 @@
-#include "diesel_vision_frontend/pattern_match.hpp"
+#include "diesel_vision_frontend/armor/pattern_match.hpp"
 
 #include <cmath>
 

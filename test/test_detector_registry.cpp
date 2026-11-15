@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-#include "diesel_vision_frontend/detector_registry.hpp"
+#include "diesel_vision_frontend/common/detector_registry.hpp"
 
 // 这个文件本身就是验收证据：新增一类目标 = 一个实现 + 一行注册 + 一段 config。
 namespace diesel_vision_frontend {

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "diesel_vision_frontend/pattern_match.hpp"
+#include "diesel_vision_frontend/armor/pattern_match.hpp"
 
 namespace diesel_vision_frontend {
 namespace {

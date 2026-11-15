@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <string>
 
-#include "diesel_vision_frontend/armor_detector.hpp"
+#include "diesel_vision_frontend/armor/armor_detector.hpp"
 
 namespace diesel_vision_frontend {
 namespace {

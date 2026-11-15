@@ -9,8 +9,8 @@
 #include <string_view>
 #include <vector>
 
-#include "diesel_vision_frontend/detector.hpp"
-#include "diesel_vision_frontend/target_class.hpp"
+#include "diesel_vision_frontend/common/detector.hpp"
+#include "diesel_vision_frontend/common/target_class.hpp"
 
 namespace diesel_vision_frontend {
 

@@ -1,5 +1,23 @@
 # 关键工程决策日志
 
+## 2026-11-14 include业务分区（覆盖旧路径）
+
+头文件与src同步按业务分区；装甲板armor/、机械臂arm/，前端检测抽象放common/。所有仓内源码、工具与测试include同步更新。库目标、命名空间和算法不变；这是公共包含路径破坏性变更，不保留旧路径转发头，外部调用方须同步改include。未改其他工作区或历史模拟器源码，未commit/push。
+
+
+## 2026-11-14 源码业务分区
+
+按本人要求，将装甲板实现迁入src/armor，机械臂实现归src/arm，跨业务注册表归src/common。CMake同步源文件路径，公共头文件/命名空间/算法不变。前端观测校验由inline移为src/arm/observation.cpp，测试语义不变。未commit/push，PR仍到dev。
+
+## 2026-11-14 机械臂职责与命名
+
+- 从 origin/dev ac11181 建立 feat/arm-frontend，PR目标dev；未commit/push。
+- 新增ArmObservation完整相机系旋转/平移契约和数值检查，namespace diesel_vision_frontend。
+- 无相机/数据集，不实现假识别器；未改变既有Detector/Observation契约。
+- interfaces正式消息与前后端装配适配待评审。
+
+保持最新dev的PnP在前端、坐标转换/运动学在后端边界，不迁入旧foray_arm四轴演示的OpenCV依赖。旧冲突工作区完整保留，新目录为隔离Git工作树，不另建远端仓库。
+
 > 记录 fork patch、换版本、**破坏性接口变更**、架构取舍。
 > 格式见 `foray_docs/repository_structure.md` §7.2。
 

@@ -1,8 +1,8 @@
 #ifndef DIESEL_VISION_FRONTEND_ARMOR_PIPELINE
 #define DIESEL_VISION_FRONTEND_ARMOR_PIPELINE
 
-#include "diesel_vision_frontend/dual_detector.hpp"
-#include "diesel_vision_frontend/pnp_solver.hpp"
+#include "diesel_vision_frontend/armor/dual_detector.hpp"
+#include "diesel_vision_frontend/armor/pnp_solver.hpp"
 namespace diesel_vision_frontend {
 // 装甲板识别结果
 struct ArmorObservation {

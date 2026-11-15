@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "diesel_vision_frontend/armor_pipeline.hpp"
+#include "diesel_vision_frontend/armor/armor_pipeline.hpp"
 
 // 造数据 + 验证
 namespace diesel_vision_frontend {

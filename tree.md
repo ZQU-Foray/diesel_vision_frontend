@@ -1,47 +1,29 @@
 # 目录结构说明
 
-## 目录结构
-
-```
+```text
 .
-├── README.md                本仓定位、接口、上下游
-├── AGENTS.md                AI 协作规范
-├── plan.md                  开发计划与进度
-├── decision.md              关键工程决策日志
-├── tree.md                  本文件
-├── CODEOWNERS               Review 自动分派
-├── .diesel-layer             所属层与依赖边界（CI 校验）
-├── .gitignore
-├── CMakeLists.txt          PnP、双模型与调用链的构建、安装及单元测试
-├── package.xml             ROS 2 包声明
-├── include/diesel_vision_frontend/  检测结果类型、双模型、PnP、图案框配对与调用链接口
-│   ├── target_class.hpp     目标类别枚举 TargetClass
-│   ├── observation.hpp      前后端逐帧契约 Observation
-│   ├── detector.hpp         Detector 抽象接口
-│   ├── detector_registry.hpp 静态注册表 + 配置装配
-│   └── armor_detector.hpp   装甲板检测器（首个 Detector 实现）
-├── src/                   PnP、双模型、调用链、图案框配对与检测器注册表实现
-├── config/vision.conf    检测器装配配置（enabled + <名字>.<参数>）
-├── tools/camera_debug.cpp  可选海康 MVS 相机只读调试窗口（不发送控制）
-├── test/                  对应的离线单元测试
-└── .github/
-    └── workflows/
-        └── ci.yml           复制自组织 CI 模板
+├── include/diesel_vision_frontend/
+│   ├── armor/   装甲板结果、双模型、图案匹配、PnP与处理接口
+│   ├── arm/     机械臂完整相机位姿草案与校验接口
+│   └── common/  TargetClass、Observation、Detector与注册表
+├── src/
+│   ├── armor/   装甲板实现；历史灯条几何仅供仿真适配
+│   ├── arm/     机械臂观测校验，未实现真实识别器
+│   └── common/  检测器注册与配置装配
+├── test/        各模块独立无硬件测试
+├── config/      检测器配置
+├── tools/       可选相机调试入口
+├── CMakeLists.txt / package.xml
+├── README.md / plan.md / decision.md
+└── AGENTS.md / .diesel-layer / .github/
 ```
 
-> 当前正式图像入口连接双模型与四角 PnP；旧单模型 `detector.hpp/.cpp` 与 `test_detector.cpp` 已于 2026-11-14 移除，检测结果类型统一由 `armor_detection.hpp` 提供。双模型已完成真实 ONNX 离线推理，并共享预处理、并行执行两个独立 Session。HSV 仲裁、相机标定与实机验证仍待完成。
+## 包含路径与边界
 
-> `sp_lightbar_geometry` 是历史仿真适配工具；正式相机链路直接用物理外轮廓四角做 PnP，不转换为灯条端点。
+2026-11-14：include与src同时按业务划分。公共包含路径是破坏性变更；仓内源码、测试和工具已同步，外部调用方需要同步修改。命名空间保持`diesel_vision_frontend`（机械臂后端使用其`::arm`子命名空间），库目标名称不变。不保留根目录旧路径转发头。
 
-> 双模型接口附带可选 CPU ORT 线程配置和单帧阶段计时；`test/test_dual_detector.cpp` 可用本地 ONNX/图片夹具做离线分段基准，`test/test_pnp.cpp` 可选重复解算计时。
-
-> 多目标抽象：`TargetClass` + `Detector` + `DetectorRegistry` + `Observation`。新增一类目标 = 一个实现文件 + 一行 `DIESEL_REGISTER_DETECTOR` + 一段 `config/vision.conf`；`test/test_detector_registry.cpp` 用假检测器覆盖注册、装配、重复注册与错误配置。`ArmorDetector` 是首个实现，内部仍是 `DualDetector` + `Solver`，无标定时只输出像素四角并把 `normal_valid` 置 false。
-
-> `DualDetector` 使用当前 Pose 标签契约 0=红、1=蓝；`test/test_dual_detector.cpp` 同时覆盖数字到颜色的映射。当前本地 ONNX 的名称元数据已修正，但换权重必须重新核对其类别表。
+PnP仍归前端；双模型真实链路使用外轮廓四角，不转灯条端点。机械臂目前仅有位姿契约，不声称完成识别或抓取。
 
 ## 记录约束
 
-MUST NOT 记录以下内容：
-
-- `build/`、`install/`、`log/`、`.git/` 等依赖与产物目录
-- 临时文件、缓存文件、日志文件
+不记录build/install/log/.git或缓存产物。

@@ -1,8 +1,8 @@
 #ifndef DIESEL_VISION_FRONTEND_DUAL_DETECTOR_HPP
 #define DIESEL_VISION_FRONTEND_DUAL_DETECTOR_HPP
 
-#include "diesel_vision_frontend/armor_detection.hpp"
-#include "diesel_vision_frontend/pattern_match.hpp"
+#include "diesel_vision_frontend/armor/armor_detection.hpp"
+#include "diesel_vision_frontend/armor/pattern_match.hpp"
 
 #include <memory>
 #include <string>

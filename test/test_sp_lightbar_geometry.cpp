@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "diesel_vision_frontend/sp_lightbar_geometry.hpp"
+#include "diesel_vision_frontend/armor/sp_lightbar_geometry.hpp"
 
 namespace {
 

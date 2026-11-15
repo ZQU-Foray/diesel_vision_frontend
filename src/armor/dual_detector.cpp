@@ -1,4 +1,4 @@
-#include "diesel_vision_frontend/dual_detector.hpp"
+#include "diesel_vision_frontend/armor/dual_detector.hpp"
 
 #include <onnxruntime_cxx_api.h>
 #include <opencv2/imgproc.hpp>

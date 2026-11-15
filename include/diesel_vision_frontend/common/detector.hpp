@@ -6,8 +6,8 @@
 
 #include <opencv2/core.hpp>
 
-#include "diesel_vision_frontend/observation.hpp"
-#include "diesel_vision_frontend/target_class.hpp"
+#include "diesel_vision_frontend/common/observation.hpp"
+#include "diesel_vision_frontend/common/target_class.hpp"
 
 namespace diesel_vision_frontend {
 
