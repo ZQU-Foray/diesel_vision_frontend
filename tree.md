@@ -1,5 +1,9 @@
 # 目录结构说明
 
+2026-11-21：`arm/color_marker.hpp`与`src/arm/color_marker.cpp`实现专用四色标记板像素检测与PnP；
+`src/arm/marker_sim_bridge.cpp`为文件/文本适配，`test/test_color_marker.cpp`覆盖正常/漏标/重复色/非法输入。
+不是YOLO通用抓取检测器；不读取仿真物体位姿，不做运动规划。
+
 ```text
 .
 ├── include/diesel_vision_frontend/

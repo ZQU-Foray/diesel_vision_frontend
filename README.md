@@ -1,5 +1,11 @@
 # diesel_vision_frontend
 
+## 2026-11-21 模拟相机标记板识别
+
+arm/color_marker：识别BGR图像上红/绿/蓝/黄色圆标中心，已知中心间距，PnP输出ArmObservation。
+只用于专用彩色标记板仿真验证，不替代真实物体YOLO识别；需四标完整、各颜色唯一、正深度、内参和重投影检查。
+src/arm/marker_sim_bridge.cpp提供图像文件与内参输入，输出相机系位姿与标注图；不读取仿真物体坐标，不做基座变换。
+
 ## src按业务分区（2026-11-14）
 
 ```text

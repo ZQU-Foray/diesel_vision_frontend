@@ -26,6 +26,7 @@ endif()
 
 add_library(${PROJECT_NAME} SHARED
     src/arm/observation.cpp
+    src/arm/color_marker.cpp
     src/armor/pnp_solver.cpp
     src/armor/armor_pipeline.cpp
     src/armor/pattern_match.cpp
@@ -59,6 +60,9 @@ ament_export_targets(export_${PROJECT_NAME} HAS_LIBRARY_TARGET)
 ament_export_dependencies(Eigen3 OpenCV)
 
 # 海康相机调试入口是可选工具，不给生产视觉库增加 MVS 依赖。
+add_executable(arm_marker_sim_bridge src/arm/marker_sim_bridge.cpp)
+target_link_libraries(arm_marker_sim_bridge PRIVATE ${PROJECT_NAME})
+
 find_path(MVS_INCLUDE_DIR MvCameraControl.h HINTS /opt/MVS/include $ENV{MVS_HOME}/include)
 find_library(MVS_LIBRARY MvCameraControl HINTS /opt/MVS/lib/64 $ENV{MVS_HOME}/lib/64)
 if(MVS_INCLUDE_DIR AND MVS_LIBRARY)
@@ -75,6 +79,8 @@ endif()
 
 if(BUILD_TESTING)
     find_package(ament_cmake_gtest REQUIRED)
+    ament_add_gtest(test_color_marker test/test_color_marker.cpp)
+    target_link_libraries(test_color_marker ${PROJECT_NAME})
     ament_add_gtest(test_arm_observation test/test_arm_observation.cpp)
     target_link_libraries(test_arm_observation ${PROJECT_NAME})
     ament_add_gtest(test_pnp test/test_pnp.cpp)
